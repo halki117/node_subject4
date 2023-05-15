@@ -9,6 +9,7 @@ import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { PostModule } from './post/post.module';
 import * as dotenv from 'dotenv'; // .envの変数を使うため
 
 dotenv.config();
@@ -22,7 +23,8 @@ dotenv.config();
     }),
     TypeOrmModule.forRoot(AppDataSource.options),
     AuthModule,
-    UserModule],
+    UserModule,
+    PostModule],
   controllers: [AppController, AuthController],
   providers: [AppService],
 
