@@ -1,3 +1,4 @@
+import { HttpStatus } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
@@ -26,6 +27,11 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload)
     };
+  }
+
+  async logout(res: any) {
+    res.clearCookie('jwt');
+    res.status(HttpStatus.OK).send();
   }
 
   async signup(name: string, email: string, pass: string){
