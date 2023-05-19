@@ -15,14 +15,16 @@ export class AuthController {
   
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  async login(@Request() req, @Res() res: Response) {
+    const jwt = await this.authService.login(req.user);
+    console.log(jwt);
+    res.cookie('jwt', jwt.access_token, { httpOnly: true });
+    return res.send('Logged in successfully!');
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('logout')
   logout(@Res() res: Response) {
-    // res.clearCookie('jwt');
-    // res.status(HttpStatus.OK).send();
     return this.authService.logout(res);
   }
 

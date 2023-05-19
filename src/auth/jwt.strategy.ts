@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Request } from 'express';
 import * as dotenv from 'dotenv'; // .envの変数を使うため
 
 dotenv.config();
@@ -9,8 +10,9 @@ dotenv.config();
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
-      // Authorization bearerからトークンを読み込む関数を返す
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: Request) => request.cookies?.jwt, // CookieからJWTを取得
+      ]),
       // 有効期間を無視するかどうか
       ignoreExpiration: false,
       // .envファイルからシークレットキーを渡す
