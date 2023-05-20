@@ -11,7 +11,10 @@ export class AuthController {
   
   @Get('login')
   @Render('auth/login')
-  loginView() {}
+  loginView(@Request() req) {
+    const loginUser = req.user ? req.user.username : null;
+    return {loginUser: loginUser};
+  }
   
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -31,7 +34,10 @@ export class AuthController {
 
   @Get('signup')
   @Render('auth/signup')
-  signupView() {}
+  signupView(@Request() req) {
+    const loginUser = req.user ? req.user.username : null;
+    return {loginUser: loginUser};
+  }
 
   @Post('signup')
   async signUp(@Request() req, @Res() res: Response) {

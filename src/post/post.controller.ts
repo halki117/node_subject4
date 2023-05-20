@@ -8,12 +8,16 @@ export class PostController {
   @Get('create')
   @Render('post/create')
   createView(@Request() req) {
-    console.log(req.user);
+    const loginUser = req.user ? req.user.username : null;
+    return {loginUser: loginUser};
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('posts')
   @Render('post/posts')
-  postsView() {}
+  postsView(@Request() req) {
+    const loginUser = req.user ? req.user.username : null;
+    return {loginUser: loginUser};
+  }
 
 }
