@@ -57,3 +57,13 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+#dropdown-content{
+  display: none;
+  position: absolute;
+  right: 6%;
+  top: 4%;
+}
+#dropdown-content input {
+  padding: 8px 20px;
+}
