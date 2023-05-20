@@ -31,7 +31,7 @@ export class AuthService {
 
   async logout(res: any) {
     res.clearCookie('jwt');
-    res.status(HttpStatus.OK).send();
+    res.redirect('/auth/login');
   }
 
   async signup(name: string, email: string, pass: string){
