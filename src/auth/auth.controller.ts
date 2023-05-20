@@ -19,7 +19,8 @@ export class AuthController {
     const jwt = await this.authService.login(req.user);
     console.log(jwt);
     res.cookie('jwt', jwt.access_token, { httpOnly: true });
-    return res.send('Logged in successfully!');
+    console.log('Logged in successfully!');
+    res.redirect('/post/posts');
   }
 
   @UseGuards(JwtAuthGuard)
@@ -33,7 +34,11 @@ export class AuthController {
   signupView() {}
 
   @Post('signup')
-  async signUp(@Request() req) {
-    return this.authService.signup(req.body.name, req.body.email, req.body.password,);
+  async signUp(@Request() req, @Res() res: Response) {
+    const jwt = await this.authService.signup(req.body.name, req.body.email, req.body.password,);
+    console.log(jwt);
+    res.cookie('jwt', jwt.access_token, { httpOnly: true });
+    console.log('Signup successfully!');
+    res.redirect('/post/posts');
   }
 }
