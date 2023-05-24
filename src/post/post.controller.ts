@@ -31,9 +31,13 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('posts')
   @Render('post/posts')
-  postsView(@Request() req) {
+  async postsView(@Request() req) {
+    const posts = await this.postService.findAll();
     const loginUser = req.user ? req.user.username : null;
-    return {loginUser: loginUser};
+    return {
+      loginUser: loginUser,
+      posts: posts
+    };
   }
 
 }

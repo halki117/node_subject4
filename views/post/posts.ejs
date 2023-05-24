@@ -1,23 +1,15 @@
 <%- include('../common/header') %>
 <div class="container wide">
-  <article class="card">
-    <p class="title">title</p>
-    <p class="content">content</p>
-    <p class="user-name">投稿者: <span>username</span></p>
-    <div class="card-buttons">
-      <button class="update">編集</button>
-      <button class="delete">削除</button>
-    </div>
-  </article>
-
-  <article class="card">
-    <p class="title">title</p>
-    <p class="content">content</p>
-    <p class="user-name">投稿者: <span>username</span></p>
-    <div class="card-buttons">
-      <button class="update">編集</button>
-      <button class="delete">削除</button>
-    </div>
-  </article>
+  <% for (const post of posts) { %>
+    <article class="card">
+      <p class="title"><%= post.title %></p>
+      <p class="content"><%= post.content %></p>
+      <p class="user-name">投稿者: <span><%= post.user.name %></span></p>
+      <div class="card-buttons">
+        <button class="update">編集</button>
+        <button class="delete">削除</button>
+      </div>
+    </article>
+  <% } %>
 </div>
 <%- include('../common/footer') %>
