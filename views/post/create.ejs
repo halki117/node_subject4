@@ -1,6 +1,6 @@
 <%- include('../common/header') %>
 <div class="container wide">
-  <form action="" method="post">
+  <form action="/post/create" method="post">
 
     <div class="form-group">
       <label for="title">タイトル</label>
@@ -9,7 +9,7 @@
 
     <div class="form-group">
       <label for="content">コンテンツ</label>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <textarea name="content" id="content" cols="30" rows="10"></textarea>
     </div>
 
     <button class="post-button" type="submit">新規作成</button>
