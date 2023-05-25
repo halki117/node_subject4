@@ -35,9 +35,24 @@
     })
 
     // 削除ボタン押下
-    $('.delete').click(function(){
+    $('.delete').click(function(e){
+      e.preventDefault();
+
       let postID = $(this).data().postId;
-      console.log(postID);
+
+      // DELETEメソッドで削除処理実行
+      fetch( `/post/delete/${postID}`, {
+        method: 'DELETE',
+      })
+      .then(res => {
+        res.json().then(data => {
+          window.location.href = `/post/posts`;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      
     })
     
   });

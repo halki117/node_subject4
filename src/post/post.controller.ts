@@ -1,4 +1,4 @@
-import { Controller,Request, Post, UseGuards, Get, Res, Render, Body, Put, Param } from '@nestjs/common';
+import { Controller,Request, Post, UseGuards, Get, Res, Render, Body, Put, Delete , Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/JwtAuth.guard';
 import { PostService } from './post.service';
 import { CreatePostDTO } from './post.dto';
@@ -61,6 +61,16 @@ export class PostController {
     return { 
       message: "updated!!",
       updateTarget: post
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete/:id')
+  async delete(@Param('id') post_id: string){
+    const post = await this.postService.delete(parseInt(post_id));
+    return { 
+      message: "deleted!!",
+      deleteTarget: post
     };
   }
 

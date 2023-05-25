@@ -43,4 +43,8 @@ export class PostService {
     return this.postRepository.save(post);
   }
 
+  async delete(post_id: number) {
+    return await this.postRepository.delete(post_id);
+  }
+
 }
