@@ -34,4 +34,13 @@ export class PostService {
     return this.postRepository.save(post);
   }
 
+  async update(formData: CreatePostDTO, post_id: number) {
+    const post = await this.postRepository.findOneBy({ id: post_id });
+
+    post.title = formData.title;
+    post.content = formData.content;
+    
+    return this.postRepository.save(post);
+  }
+
 }

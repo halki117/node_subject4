@@ -55,9 +55,13 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Put(':id')
-  async update() {
-    console.log('update!!!');
+  @Put('update/:id')
+  async update(@Param('id') post_id: string, @Body() formData: CreatePostDTO,) {
+    const post = await this.postService.update(formData, parseInt(post_id));
+    return { 
+      message: "updated!!",
+      updateTarget: post
+    };
   }
 
 }
