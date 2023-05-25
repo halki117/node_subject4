@@ -62,7 +62,7 @@ button{
   cursor: pointer;
 }
 
-.update {
+.edit {
   width: 100%;
   padding: 8px 20px;
   background-color: #4CAF50;
@@ -86,9 +86,6 @@ button{
   width: 25%;
 }
 
-button:hover {
-  background-color: #45a049;
-}
 
 #dropdown-content{
   display: none;

@@ -14,9 +14,9 @@
           <input type="hidden" name="_method" value="DELETE">
           <input class="delete" type="submit" value="削除 ">
         </form> -->
-        <% if( loginUserId === post.user.id ){ %>
-          <button class="update">編集</button>
-          <button class="delete">削除</button>
+        <% if( loginUserId === post.user.id ){ %> 
+          <button class="edit" id="edit" data-post-id="<%= post.id %>">編集</button>
+          <button class="delete" id="delete" data-post-id="<%= post.id %>">削除</button>
         <% } %>
       </div>
     </article>
@@ -27,6 +27,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(() => {
-    console.log('ok');
+  
+    // 編集ボタン押下
+    $('.edit').click(function(){
+      let postID = $(this).data().postId;
+      window.location.href = `/post/edit/${postID}`;
+    })
+
+    // 削除ボタン押下
+    $('.delete').click(function(){
+      let postID = $(this).data().postId;
+      console.log(postID);
+    })
+    
   });
 </script>

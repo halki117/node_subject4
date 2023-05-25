@@ -1,15 +1,15 @@
 <%- include('../common/header') %>
 <div class="container wide">
-  <form action="" method="post">
+  <form action="/post/update" method="post">
 
     <div class="form-group">
       <label for="title">タイトル</label>
-      <input type="text" id="title" name="title" required>
+      <input type="text" id="title" name="title" value="<%= post.title %>" required>
     </div>
 
     <div class="form-group">
       <label for="content">コンテンツ</label>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <textarea name="" id="" cols="30" rows="10" required><%= post.content %></textarea>
     </div>
 
     <button class="post-button" type="submit">編集完了</button>

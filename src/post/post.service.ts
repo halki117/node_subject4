@@ -18,6 +18,10 @@ export class PostService {
     return await this.postRepository.find({ relations: ['user'] });
   }
 
+  async findOne(post_id): Promise<Post> {
+    return await this.postRepository.findOneBy({ id: post_id });
+  } 
+
   async create(createPostDTO: CreatePostDTO, loginUserId: number) {
 
     const user = await this.userRepository.findOneBy({ id: loginUserId });

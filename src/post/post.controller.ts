@@ -1,4 +1,4 @@
-import { Controller,Request, Post, UseGuards, Get, Res, Render, Body, Put } from '@nestjs/common';
+import { Controller,Request, Post, UseGuards, Get, Res, Render, Body, Put, Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/JwtAuth.guard';
 import { PostService } from './post.service';
 import { CreatePostDTO } from './post.dto';
@@ -39,6 +39,18 @@ export class PostController {
       loginUserId: loginUserId,
       loginUser: loginUser,
       posts: posts
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('edit/:id')
+  @Render('post/edit')
+  async edit(@Request() req, @Param('id') post_id: string) {
+    const post = await this.postService.findOne(post_id);
+    const loginUser = req.user ? req.user.username : null;
+    return {
+      loginUser: loginUser,
+      post: post
     };
   }
 
