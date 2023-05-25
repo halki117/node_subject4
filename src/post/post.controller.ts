@@ -1,4 +1,4 @@
-import { Controller,Request, Post, UseGuards, Get, Res, Render, Body } from '@nestjs/common';
+import { Controller,Request, Post, UseGuards, Get, Res, Render, Body, Put } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/JwtAuth.guard';
 import { PostService } from './post.service';
 import { CreatePostDTO } from './post.dto';
@@ -34,10 +34,18 @@ export class PostController {
   async postsView(@Request() req) {
     const posts = await this.postService.findAll();
     const loginUser = req.user ? req.user.username : null;
+    const loginUserId = req.user ? req.user.userId : null;
     return {
+      loginUserId: loginUserId,
       loginUser: loginUser,
       posts: posts
     };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put(':id')
+  async update() {
+    console.log('update!!!');
   }
 
 }

@@ -6,10 +6,27 @@
       <p class="content"><%= post.content %></p>
       <p class="user-name">投稿者: <span><%= post.user.name %></span></p>
       <div class="card-buttons">
-        <button class="update">編集</button>
-        <button class="delete">削除</button>
+        <!-- <form class="card-button" action="/post/" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <input class="update" type="submit" value="編集">
+        </form>
+        <form class="card-button" action="" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input class="delete" type="submit" value="削除 ">
+        </form> -->
+        <% if( loginUserId === post.user.id ){ %>
+          <button class="update">編集</button>
+          <button class="delete">削除</button>
+        <% } %>
       </div>
     </article>
   <% } %>
 </div>
 <%- include('../common/footer') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(() => {
+    console.log('ok');
+  });
+</script>
