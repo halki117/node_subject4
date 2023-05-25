@@ -6,14 +6,6 @@
       <p class="content"><%= post.content %></p>
       <p class="user-name">投稿者: <span><%= post.user.name %></span></p>
       <div class="card-buttons">
-        <!-- <form class="card-button" action="/post/" method="post">
-          <input type="hidden" name="_method" value="PUT">
-          <input class="update" type="submit" value="編集">
-        </form>
-        <form class="card-button" action="" method="post">
-          <input type="hidden" name="_method" value="DELETE">
-          <input class="delete" type="submit" value="削除 ">
-        </form> -->
         <% if( loginUserId === post.user.id ){ %> 
           <button class="edit" id="edit" data-post-id="<%= post.id %>">編集</button>
           <button class="delete" id="delete" data-post-id="<%= post.id %>">削除</button>
