@@ -33,7 +33,7 @@
       const postID = $('#update-form [name=post-id]').val();
 
       // PUTメソッドでデータを送信
-      fetch( `/post/update/${postID}`, {
+      fetch( `/post/${postID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json', // JSON形式でデータを送信するためにContent-Typeを指定
@@ -47,7 +47,7 @@
         res.json().then(data => {
           // console.log(data.message);
           // console.log(data.updateTarget);
-          window.location.href = `/post/posts`;
+          window.location.href = `/post`;
         });
       })
       .catch((error) => {

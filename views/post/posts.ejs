@@ -23,7 +23,7 @@
     // 編集ボタン押下
     $('.edit').click(function(){
       let postID = $(this).data().postId;
-      window.location.href = `/post/edit/${postID}`;
+      window.location.href = `/post/${postID}/edit`;
     })
 
     // 削除ボタン押下
@@ -33,12 +33,12 @@
       let postID = $(this).data().postId;
 
       // DELETEメソッドで削除処理実行
-      fetch( `/post/delete/${postID}`, {
+      fetch( `/post/${postID}`, {
         method: 'DELETE',
       })
       .then(res => {
         res.json().then(data => {
-          window.location.href = `/post/posts`;
+          window.location.href = `/post`;
         });
       })
       .catch((error) => {
