@@ -17,7 +17,7 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('create')
+  @Post()
   async create(
     @Request() req,
     @Res() res: Response,
@@ -25,11 +25,11 @@ export class PostController {
   ) {
     const loginUserId = req.user ? req.user.userId : null;
     await this.postService.create(post, loginUserId);
-    res.redirect('/post/posts');
+    res.redirect('/post');
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('posts')
+  @Get()
   @Render('post/posts')
   async postsView(@Request() req) {
     const posts = await this.postService.findAll();
@@ -43,7 +43,7 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('edit/:id')
+  @Get(':id/edit')
   @Render('post/edit')
   async edit(@Request() req, @Param('id') post_id: string) {
     const post = await this.postService.findOne(post_id);
@@ -55,7 +55,7 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Put('update/:id')
+  @Put(':id')
   async update(@Param('id') post_id: string, @Body() formData: CreatePostDTO,) {
     const post = await this.postService.update(formData, parseInt(post_id));
     return { 
@@ -65,7 +65,7 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Delete('delete/:id')
+  @Delete(':id')
   async delete(@Param('id') post_id: string){
     const post = await this.postService.delete(parseInt(post_id));
     return { 
