@@ -43,7 +43,7 @@ export class PostController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':id/edit')
+  @Get(':id')
   @Render('post/edit')
   async edit(@Request() req, @Param('id') post_id: string) {
     const post = await this.postService.findOne(post_id);
