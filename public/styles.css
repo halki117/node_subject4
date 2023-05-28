@@ -27,6 +27,10 @@ ul, body{
   padding-top: 100px;
 }
 
+.wide{
+  width: 800px;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -36,7 +40,7 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input,textarea{
   width: 100%;
   padding: 8px;
   border-radius: 3px;
@@ -44,9 +48,13 @@ input {
   box-sizing: border-box
 }
 
-button {
+.card-button{
+  margin-right: 20px;
+}
+
+button{
   width: 100%;
-  padding: 8px;
+  padding: 8px 20px;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -54,9 +62,30 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
+.edit {
+  width: 100%;
+  padding: 8px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
+
+.delete{
+  width: 100%;
+  padding: 8px 20px;
+  background-color: #e22d2d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.post-button{
+  width: 25%;
+}
+
 
 #dropdown-content{
   display: none;
@@ -66,4 +95,23 @@ button:hover {
 }
 #dropdown-content input {
   padding: 8px 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .16);
+  color: #212121;
+  text-decoration: none;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.card-buttons{
+  display: flex;
+  width: 30%;
+  padding-right: 10px;
+}
+
+.card-buttons button{
+  margin-right: 10px;
 }

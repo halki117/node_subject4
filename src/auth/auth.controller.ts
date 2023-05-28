@@ -23,7 +23,7 @@ export class AuthController {
     console.log(jwt);
     res.cookie('jwt', jwt.access_token, { httpOnly: true });
     console.log('Logged in successfully!');
-    res.redirect('/post/posts');
+    res.redirect('/post');
   }
 
   @UseGuards(JwtAuthGuard)
@@ -45,6 +45,6 @@ export class AuthController {
     console.log(jwt);
     res.cookie('jwt', jwt.access_token, { httpOnly: true });
     console.log('Signup successfully!');
-    res.redirect('/post/posts');
+    res.redirect('/post');
   }
 }

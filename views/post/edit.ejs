@@ -1,0 +1,60 @@
+<%- include('../common/header') %>
+<div class="container wide">
+  <form action="/post/update" method="post" id="update-form">
+
+    <div class="form-group">
+      <label for="title">タイトル</label>
+      <input type="text" id="title" name="title" value="<%= post.title %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="content">コンテンツ</label>
+      <textarea name="content" id="content" cols="30" rows="10" required><%= post.content %></textarea>
+    </div>
+
+    <input type="hidden" name="post-id" value="<%= post.id %>">
+
+    <button class="post-button update" id="update" type="submit">編集完了</button>
+
+  </form>
+</div>
+<%- include('../common/footer') %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(() => {
+  
+    // 編集ボタン押下
+    $('#update').click(function(e){
+      e.preventDefault();
+
+      const title = $('#update-form [name=title]').val();
+      const content = $('#update-form [name=content]').val();
+      const postID = $('#update-form [name=post-id]').val();
+
+      // PUTメソッドでデータを送信
+      fetch( `/post/${postID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json', // JSON形式でデータを送信するためにContent-Typeを指定
+        },
+        body: JSON.stringify({
+          title: title,
+          content: content,
+        }),
+      })
+      .then(res => {
+        res.json().then(data => {
+          // console.log(data.message);
+          // console.log(data.updateTarget);
+          window.location.href = `/post`;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    })
+    
+  });
+</script>
