@@ -41,8 +41,6 @@ export class PostController {
     // いいねしたpostオブジェクトに対しては isFavorited のプロパティが付与される
     await this.postService.checkIsFavorited(loginUserId, posts);
 
-    console.log(posts);
-
     return {
       loginUserId: loginUserId,
       loginUser: loginUser,
