@@ -15,7 +15,7 @@ export class PostService {
   ){}
 
   async findAll(): Promise<Post[]>  {
-    return await this.postRepository.find({ relations: ['user'] });
+    return await this.postRepository.find({ relations: ['user', 'favorites'] });
   }
 
   async findOne(post_id): Promise<Post> {

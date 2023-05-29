@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 
 import { Post } from './posts.entity';
+import { Favorite } from './favorites.entity';
 
 @Entity({name: 'users'})
 export class User {
@@ -16,6 +17,9 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts?: Post[];
+
+  @OneToMany(() => Favorite, (favorite) => favorite.user, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  favorites?: Favorite[];
 
   @Column()
   name: string;
