@@ -32,6 +32,9 @@ export class Post {
   })
   favoritedByUsers?: User[];
 
+  // 自分か投稿に対していいね済みであるかを判定
+  isFavorited?: boolean;
+
   @Column({ nullable: false })
   title: string;
 

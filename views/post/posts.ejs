@@ -6,8 +6,12 @@
       <p class="content"><%= post.content %></p>
       <p class="user-name">投稿者: <span><%= post.user.name %></span></p>
       <p>
-        <i class="far fa-heart"> x<%= post.favorites.length %></i>
-        <!-- <i class="fas fa-heart"></i> -->
+        <% if( post.isFavorited ) { %> 
+          <i class="fas fa-heart"></i><span> x<%= post.favorites.length %></span>
+        <% } else { %>
+          <i class="far fa-heart"></i><span> x<%= post.favorites.length %></span>
+        <% } %>
+        
       </p>
       <div class="card-buttons">
         <% if( loginUserId === post.user.id ){ %> 
