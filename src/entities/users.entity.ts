@@ -4,7 +4,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 
 import { Post } from './posts.entity';
@@ -20,6 +22,14 @@ export class User {
 
   @OneToMany(() => Favorite, (favorite) => favorite.user, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
   favorites?: Favorite[];
+
+  @ManyToMany(() => Post, (post) => post.favoritedByUsers, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @JoinTable({
+    name: 'favorites',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id'},
+    inverseJoinColumn: { name: 'post_id', referencedColumnName: 'id'},
+  })
+  favoritedPosts?: Post[];
 
   @Column()
   name: string;
