@@ -12,8 +12,7 @@ export class FavoriteController {
   @Post(':id')
   async favorite(@Request() req, @Param('id') post_id: string){
     const loginUserId = req.user ? req.user.userId : null;
-
-    // const result = await this.favoriteService.findOne( parseInt(post_id), loginUserId);
-    // console.log(result);
+    const result =  await this.favoriteService.favorite(loginUserId, parseInt(post_id));
+    return { result: result };
   }
 }
