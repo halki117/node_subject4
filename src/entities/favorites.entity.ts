@@ -17,10 +17,10 @@ export class Favorite {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @PrimaryColumn({ name: 'user_id' })
+  @Column({ name: 'user_id' })
   userId: number;
 
-  @PrimaryColumn({ name: 'post_id' })
+  @Column({ name: 'post_id' })
   postId: number;
 
   @ManyToOne(() => User, (user) => user.favorites, { onDelete: 'CASCADE' })
