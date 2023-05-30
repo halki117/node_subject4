@@ -20,10 +20,10 @@ export class User {
   @OneToMany(() => Post, (post) => post.user)
   posts?: Post[];
 
-  @OneToMany(() => Favorite, (favorite) => favorite.user, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @OneToMany(() => Favorite, (favorite) => favorite.user)
   favorites?: Favorite[];
 
-  @ManyToMany(() => Post, (post) => post.favoritedByUsers, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @ManyToMany(() => Post, (post) => post.favoritedByUsers)
   @JoinTable({
     name: 'favorites',
     joinColumn: { name: 'user_id', referencedColumnName: 'id'},

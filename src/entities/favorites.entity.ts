@@ -23,11 +23,11 @@ export class Favorite {
   @PrimaryColumn({ name: 'post_id' })
   postId: number;
 
-  @ManyToOne(() => User, (user) => user.favorites, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.favorites, { onDelete: 'CASCADE' })
   @JoinColumn({name: 'user_id'})
   user: User;
 
-  @ManyToOne(() => Post, (post) => post.favorites, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+  @ManyToOne(() => Post, (post) => post.favorites, { onDelete: 'CASCADE' })
   @JoinColumn({name: 'post_id'})
   post: Post;
 

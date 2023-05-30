@@ -73,6 +73,20 @@
     });
 
     // いいね解除処理
-    
+    $('.favorited').click(function(){
+      let postID = $(this).data().postId;
+      fetch( `/favorite/${postID}`, {
+        method: 'DELETE',
+      })
+      .then(res => {
+        res.json().then(data => {
+          console.log(data.result);
+          window.location.href = `/post`;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    });
   });
 </script>

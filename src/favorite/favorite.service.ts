@@ -20,4 +20,10 @@ export class FavoriteService {
     favorite.postId = post_id;
     return this.favoriteRepository.save(favorite);
   }
+
+  async unfavorite(user_id: number, post_id: number){
+    const favorite = await this.findOne( post_id, user_id );
+    const idObj = { id: favorite.id, userId: user_id, postId:post_id }
+    return this.favoriteRepository.delete(idObj);
+  }
 }
