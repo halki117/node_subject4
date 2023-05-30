@@ -6,10 +6,10 @@
       <p class="content"><%= post.content %></p>
       <p class="user-name">投稿者: <span><%= post.user.name %></span></p>
       <p>
-        <% if( post.isFavorited ) { %> 
-          <i class="fas fa-heart"></i><span> x<%= post.favorites.length %></span>
+        <% if( post.isFavorited ) { %>
+          <i class="fas fa-heart favorited" data-post-id="<%= post.id %>"></i><span> x<%= post.favorites.length %></span>
         <% } else { %>
-          <i class="far fa-heart"></i><span> x<%= post.favorites.length %></span>
+          <i class="far fa-heart unfavorited" data-post-id="<%= post.id %>"></i><span> x<%= post.favorites.length %></span>
         <% } %>
         
       </p>
@@ -54,6 +54,24 @@
       });
       
     })
+
+    // いいねをする処理
+    $('.unfavorited').click(function(){
+      let postID = $(this).data().postId;
+      fetch( `/favorite/${postID}`, {
+        method: 'POST',
+      })
+      .then(res => {
+        res.json().then(data => {
+          // window.location.href = `/post`;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    });
+
+    // いいね解除処理
     
   });
 </script>
