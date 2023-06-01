@@ -4,10 +4,13 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 
 import { Post } from './posts.entity';
+import { Favorite } from './favorites.entity';
 
 @Entity({name: 'users'})
 export class User {
@@ -16,6 +19,17 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts?: Post[];
+
+  @OneToMany(() => Favorite, (favorite) => favorite.user)
+  favorites?: Favorite[];
+
+  @ManyToMany(() => Post, (post) => post.favoritedByUsers)
+  @JoinTable({
+    name: 'favorites',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id'},
+    inverseJoinColumn: { name: 'post_id', referencedColumnName: 'id'},
+  })
+  favoritedPosts?: Post[];
 
   @Column()
   name: string;

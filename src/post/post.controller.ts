@@ -33,8 +33,14 @@ export class PostController {
   @Render('post/posts')
   async postsView(@Request() req) {
     const posts = await this.postService.findAll();
+
     const loginUser = req.user ? req.user.username : null;
     const loginUserId = req.user ? req.user.userId : null;
+
+    // 自分がどの投稿にいいねしたかをチェックする
+    // いいねしたpostオブジェクトに対しては isFavorited のプロパティが付与される
+    await this.postService.checkIsFavorited(loginUserId, posts);
+
     return {
       loginUserId: loginUserId,
       loginUser: loginUser,

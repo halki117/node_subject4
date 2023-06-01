@@ -15,7 +15,20 @@ export class PostService {
   ){}
 
   async findAll(): Promise<Post[]>  {
-    return await this.postRepository.find({ relations: ['user'] });
+    return await this.postRepository.find({ relations: ['user', 'favorites', 'user.favoritedPosts', 'favoritedByUsers'] });
+  }
+
+  // 自分がどの投稿にいいねしたかをチェックする
+  // いいねしたpostオブジェクトに対しては isFavorited のプロパティにtrueが付与される
+  async checkIsFavorited(loginUserId, posts) {
+    const result = posts.map((post: any) => {
+      post.favoritedByUsers.forEach(user => {
+        if(loginUserId == user.id) {
+          post.isFavorited = true;
+        }
+      });
+    });
+    return result;
   }
 
   async findOne(post_id): Promise<Post> {
