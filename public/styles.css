@@ -1,0 +1,117 @@
+ul, body{
+  margin: 0;
+  padding: 0;
+}
+
+.header-contents{
+  display: flex;
+  justify-content: right;
+  background-color: black;
+  padding-right: 5%;
+}
+
+.header-contents li{
+  color: white;
+  list-style: none;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.logo{
+  color: white;
+}
+
+.container {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.wide{
+  width: 800px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,textarea{
+  width: 100%;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box
+}
+
+.card-button{
+  margin-right: 20px;
+}
+
+button{
+  width: 100%;
+  padding: 8px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit {
+  width: 100%;
+  padding: 8px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.delete{
+  width: 100%;
+  padding: 8px 20px;
+  background-color: #e22d2d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.post-button{
+  width: 25%;
+}
+
+
+#dropdown-content{
+  display: none;
+  position: absolute;
+  right: 6%;
+  top: 4%;
+}
+#dropdown-content input {
+  padding: 8px 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .16);
+  color: #212121;
+  text-decoration: none;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.card-buttons{
+  display: flex;
+  width: 30%;
+  padding-right: 10px;
+}
+
+.card-buttons button{
+  margin-right: 10px;
+}
